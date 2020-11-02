@@ -8,7 +8,9 @@ const GlobalStyle = createGlobalStyle`
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: ${(props) => props.theme.backgroundColor};
   }
+  
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

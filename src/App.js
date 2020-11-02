@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components/macro';
+import { useState } from 'react';
+import styled, { keyframes, ThemeProvider } from 'styled-components/macro';
 import GlobalStyle from './GlobalStyle';
 import logo from './logo.svg';
 
@@ -15,7 +16,6 @@ const Wrapper = styled.div`
   text-align: center;
 
   header {
-    background-color: #282c34;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -41,11 +41,28 @@ const Link = styled.a`
   color: #61dafb;
 `;
 
+const bright = {
+  backgroundColor: '#DDD',
+  primaryColor: '#000',
+};
+
+const dark = {
+  backgroundColor: '#333',
+  primaryColor: '#fff',
+};
+
 function App() {
+  const [theme, setTheme] = useState(bright);
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Wrapper>
+        <button
+          type="button"
+          onClick={() => setTheme(theme === bright ? dark : bright)}
+        >
+          Change Theme
+        </button>
         <header>
           <img src={logo} alt="logo" />
           <p>
@@ -62,7 +79,7 @@ function App() {
           </Link>
         </header>
       </Wrapper>
-    </>
+    </ThemeProvider>
   );
 }
 
